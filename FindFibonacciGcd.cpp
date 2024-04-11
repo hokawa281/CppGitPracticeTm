@@ -3,12 +3,18 @@
 
 /* ‚±‚±‚ÉFindFibonacciGcd.h‚Å’è‹`‚µ‚½ŠÖ”‚ğÀ‘•‚·‚é@*/
 
-uint32_t gcd(uint32_t a, uint32_t b) {
-	return 0;
-}
+uint32_t gcd(uint32_t a, uint32_t b)
+{
+    int r;
 
-    // ãƒ¦ãƒ¼ã‚°ãƒªãƒƒãƒ‰ã®äº’é™¤æ³•
-    while ((r = a % b) != 0)  // yã§å‰²ã‚Šåˆ‡ã‚Œã‚‹ã¾ã§ãƒ«ãƒ¼ãƒ—
+    if (a == 0 || b == 0)  // ˆø”ƒ`ƒFƒbƒN
+    {
+        fprintf(stderr, "ˆø”ƒGƒ‰[‚Å‚·B\n");
+        return 0;
+    }
+
+    // ƒ†[ƒOƒŠƒbƒh‚ÌŒİœ–@
+    while ((r = a % b) != 0)  // y‚ÅŠ„‚èØ‚ê‚é‚Ü‚Åƒ‹[ƒv
     {
         a = b;
         b = r;
@@ -16,10 +22,49 @@ uint32_t gcd(uint32_t a, uint32_t b) {
     return b;
 }
 
-uint32_t fibonacci(uint32_t n) {
-	return 0;
+int fib(int n)
+{
+    if (n <= 1) {
+        return n;
+    }
+
+    return fib(n - 1) + fib(n - 2);
 }
 
-uint32_t findFibonacciGcd(uint32_t a, uint32_t b) {
-	return 0;
+
+uint32_t fibonacci(uint32_t n)
+{
+    uint32_t ret;
+
+    ret = fib(n);
+
+    return ret;
+}
+
+uint32_t findFibonacciGcd(uint32_t a, uint32_t b)
+{
+    uint32_t aa;
+    uint32_t bb;
+    uint32_t cc;
+    uint32_t dd;
+    uint32_t ret;
+
+    aa = fibonacci(a);
+    bb = fibonacci(b);
+    
+    cc = gcd(aa, bb);
+
+    if (cc == 1)
+        return 1;
+
+    dd = 0;
+    while (1)
+    {
+        if(fibonacci(dd) == cc)
+            break;
+
+        dd++;
+    }
+
+    return dd;
 }
